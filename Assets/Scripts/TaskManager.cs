@@ -35,9 +35,25 @@ public class TaskManager : MonoBehaviour
     GameObject neutralExp;
     GameObject emotionExp;
 
+    [SerializeField] GameObject neutral1ExpLeft;
+    [SerializeField] GameObject neutral2ExpLeft;
+    [SerializeField] GameObject happyExpLeft;
+    [SerializeField] GameObject angryExpLeft;
+    [SerializeField] GameObject fearExpLeft;
+    [SerializeField] GameObject sadExpLeft;
+
+
+    [SerializeField] GameObject neutral1ExpRight;
+    [SerializeField] GameObject neutral2ExpRight;
+    [SerializeField] GameObject happyExpRight;
+    [SerializeField] GameObject angryExpRight;
+    [SerializeField] GameObject fearExpRight;
+    [SerializeField] GameObject sadExpRight;
+
     //list of conditions & positions for the avatars
     private List<string> emotions = new List<string>() { "angry", "afraid", "happy", "sad" };
     private List<string> position = new List<string>() { "left", "right" };
+    private List<string> neutral = new List<string>() { "young", "old" };
 
     //to randomize the trial and save data
     System.Random random = new System.Random();
@@ -48,6 +64,7 @@ public class TaskManager : MonoBehaviour
     public string response;
     private int currCond;
     private int currPos;
+    private int neutralPerson;
 
     // reaction time
     private float _startTrial;
@@ -67,6 +84,9 @@ public class TaskManager : MonoBehaviour
         // show introduction text
         string introText = text1 + "\n" + text2 + "\n" + "\n" + text3;
         DisplayInstructions(introText, 36);
+
+        // set all faces invisible
+        invisibleEmotions();
     }
 
     // Update is called once per frame
@@ -187,8 +207,27 @@ public class TaskManager : MonoBehaviour
 
     void resetTrial()
     {
-        Destroy(emotionExp);
-        Destroy(neutralExp);
+        invisibleEmotions();
+        //Destroy(emotionExp);
+        //Destroy(neutralExp);
+    }
+
+    // set emotion objects invisible
+    void invisibleEmotions()
+    {
+        neutral1ExpLeft.SetActive(false);
+        neutral2ExpLeft.SetActive(false);
+        happyExpLeft.SetActive(false);
+        angryExpLeft.SetActive(false);
+        fearExpLeft.SetActive(false);
+        sadExpLeft.SetActive(false);
+
+        neutral1ExpRight.SetActive(false);
+        neutral2ExpRight.SetActive(false);
+        happyExpRight.SetActive(false);
+        angryExpRight.SetActive(false);
+        fearExpRight.SetActive(false);
+        sadExpRight.SetActive(false);
     }
 
     void randomizeTrials()
@@ -199,6 +238,9 @@ public class TaskManager : MonoBehaviour
         //Randomize Position
         currPos = random.Next(position.Count);
 
+        //Randomize Neutral Person
+        neutralPerson = random.Next(neutral.Count);
+
     }
 
     //update the conditions
@@ -206,6 +248,7 @@ public class TaskManager : MonoBehaviour
     {
         switch (currCond)
         {
+
             //emotion 1 (angry)
             case 0:
                 //place EmotionalExpression on left & Neutral on Right
@@ -213,12 +256,24 @@ public class TaskManager : MonoBehaviour
                 {
                     emotionExp = Instantiate(Resources.Load("Prefabs/Angry", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
                     neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
+                    angryExpLeft.SetActive(true);
+                    emotionExp = angryExpLeft;
+                    neutralPersonPosition();
+
+                    //emotionExp = Instantiate(Resources.Load("Prefabs/Angry", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
+                    //neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
                 }
                 //place on EmotionalExpression on right & Neutral on left
                 else
                 {
                     emotionExp = Instantiate(Resources.Load("Prefabs/Angry", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
                     neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
+                    angryExpRight.SetActive(true);
+                    emotionExp = angryExpRight;
+                    neutralPersonPosition();
+
+                    //emotionExp = Instantiate(Resources.Load("Prefabs/Angry", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
+                    //neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
                 }
                 break;
             //emotion 2 (afraid)
@@ -227,12 +282,24 @@ public class TaskManager : MonoBehaviour
                 {
                     emotionExp = Instantiate(Resources.Load("Prefabs/Afraid", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
                     neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
+                    fearExpLeft.SetActive(true);
+                    emotionExp = fearExpLeft;
+                    neutralPersonPosition();
+
+                    //emotionExp = Instantiate(Resources.Load("Prefabs/Afraid", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
+                    //neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
                 }
                 //place on EmotionalExpression on right & Neutral on left
                 else
                 {
                     emotionExp = Instantiate(Resources.Load("Prefabs/Afraid", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
                     neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
+                    fearExpRight.SetActive(true);
+                    emotionExp = fearExpRight;
+                    neutralPersonPosition();
+
+                    //emotionExp = Instantiate(Resources.Load("Prefabs/Afraid", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
+                    //neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
                 }
                 break;
             //emotion 3 (happy)
@@ -241,12 +308,24 @@ public class TaskManager : MonoBehaviour
                 {
                     emotionExp = Instantiate(Resources.Load("Prefabs/Happy", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
                     neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
+                    happyExpLeft.SetActive(true);
+                    emotionExp = happyExpLeft;
+                    neutralPersonPosition();
+
+                    //emotionExp = Instantiate(Resources.Load("Prefabs/Happy", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
+                    //neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
                 }
                 //place on EmotionalExpression on right & Neutral on left
                 else
                 {
                     emotionExp = Instantiate(Resources.Load("Prefabs/Happy", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
                     neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
+                    happyExpRight.SetActive(true);
+                    emotionExp = happyExpRight;
+                    neutralPersonPosition();
+
+                    //emotionExp = Instantiate(Resources.Load("Prefabs/Happy", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
+                    //neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
                 }
                 break;
             //emotion 4 (sad)
@@ -255,12 +334,24 @@ public class TaskManager : MonoBehaviour
                 {
                     emotionExp = Instantiate(Resources.Load("Prefabs/Sad", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
                     neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
+                    sadExpLeft.SetActive(true);
+                    emotionExp = sadExpLeft;
+                    neutralPersonPosition();
+
+                    //emotionExp = Instantiate(Resources.Load("Prefabs/Sad", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
+                    //neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
                 }
                 //place on EmotionalExpression on right & Neutral on left
                 else
                 {
                     emotionExp = Instantiate(Resources.Load("Prefabs/Sad", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
                     neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
+                    sadExpRight.SetActive(true);
+                    emotionExp = sadExpRight;
+                    neutralPersonPosition();
+
+                    //emotionExp = Instantiate(Resources.Load("Prefabs/Sad", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
+                    //neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
                 }
                 break;
 
@@ -268,12 +359,43 @@ public class TaskManager : MonoBehaviour
         }
     }
 
+    private void neutralPersonPosition()
+    {
+        // make sure that there is no person twice
+        if (currCond == 2) neutralPerson = 1;
+        else if (currCond == 3) neutralPerson = 0;
+
+
+        if (currPos == 0 && neutralPerson == 0)
+        {
+            neutral1ExpRight.SetActive(true);
+            neutralExp = neutral1ExpRight;
+        }
+        else if (currPos == 0 && neutralPerson == 1)
+        {
+            neutral2ExpRight.SetActive(true);
+            neutralExp = neutral2ExpRight;
+        }
+        //place on EmotionalExpression on right & Neutral on left
+        else if (currPos == 1 && neutralPerson == 0)
+        {
+            neutral1ExpLeft.SetActive(true);
+            neutralExp = neutral1ExpLeft;
+        }
+        else if (currPos == 1 && neutralPerson == 1)
+        {
+            neutral2ExpLeft.SetActive(true);
+            neutralExp = neutral2ExpLeft;
+        }
+    }
+
     private void SaveTrialResponses()
     {
         // The following could be written in one line but this makes it easier to see
         // add all the parameters as string to the list
+
         string currData = (nrBlocks.ToString() + "," + _nrTrials.ToString() + "," + emotions[currCond] + "," + position[currPos] +
-            "," + _rt.ToString() + "," + response);
+            "," + neutral[neutralPerson] + "," + _rt.ToString() + "," + response);
 
         // add the new list to the list of lists that will become our output csv
         _data.Add(currData);
