@@ -8,7 +8,7 @@ public class TaskManager : MonoBehaviour
     // get the other scripts
     //public DisplayText displayText;
     public WriteCSV writeCSV;
-    //public SelectionManager selectionManager;
+    public SelectionManager selectionManager;
 
     // Nr. of blocks --> private var that can be changed in the Inspector
     [SerializeField] private int nrBlocks = 3;
@@ -59,7 +59,7 @@ public class TaskManager : MonoBehaviour
     System.Random random = new System.Random();
 
     private List<string> _data = new List<string>();
-    private string _header = "BlockNumber, TaskNumber, EmotionalExpression, PositionExpression, ReactionTime, ResponsePosition";
+    private string _header = "BlockNumber; TaskNumber; EmotionalExpression; PositionExpression; Avatar; ReactionTime; ResponsePosition";
 
     public string response;
     private int currCond;
@@ -112,8 +112,9 @@ public class TaskManager : MonoBehaviour
         {
             DisplayInstructions("Time for a pause. Press Space to continue.", 30); // display pause screen
             breakCurr = false; // pause isi
-            //selectionManager.hasStarted = false;
-            //selectionManager.inTrial = false;
+            
+            selectionManager.hasStarted = false;
+            selectionManager.inTrial = false;
 
             _breakInterval = breakInterval; // reset isi time
             nrBlocks -= 1; // count down nr. of blocks
@@ -124,8 +125,10 @@ public class TaskManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             breakCurr = true;
-            //selectionManager.hasStarted = true;
-            //selectionManager.inTrial = true;
+
+            selectionManager.hasStarted = true;
+            selectionManager.inTrial = true;
+
             _breakInterval = breakInterval; // reset break time
             DisplayInstructions("", 100);
 
@@ -152,8 +155,8 @@ public class TaskManager : MonoBehaviour
                 switchTrials();
 
                 //reset the selectionSettings
-                //selectionManager.objectSelected = false;
-                //selectionManager.inTrial = true;
+                selectionManager.objectSelected = false;
+                selectionManager.inTrial = true;
 
             }
         }
@@ -172,7 +175,7 @@ public class TaskManager : MonoBehaviour
                 DisplayInstructions("", 100);
                 resetTrial();
 
-                //selectionManager.inTrial = false; //reset selection (color)
+                selectionManager.inTrial = false; //reset selection (color)
 
                 response = "noResponse";
                 _rt = stimInterval;
@@ -180,20 +183,20 @@ public class TaskManager : MonoBehaviour
             }
             // otherwise, if you answer, process the response
             //TODO: is this the best way to do it? is RT affected, because the click is registered in the selection manager?
-            //else if (selectionManager.objectSelected)
-            //{
-            //    _breakInterval = breakInterval; // reset isi time
-            //    breakCurr = true;
-            //    stimCurr = false;
-            //
-            //    selectionManager.inTrial = false; //reset selection (color)
-            //    resetTrial();
-            //
-            //    DisplayInstructions("", 100);
-            //    response = selectionManager.objectHit; //get the selected object
-            //    _rt = Time.realtimeSinceStartup - _startTrial; // reaction time
-            //    SaveTrialResponses(); // save the current response
-            //}
+            else if (selectionManager.objectSelected)
+            {
+                _breakInterval = breakInterval; // reset isi time
+                breakCurr = true;
+                stimCurr = false;
+            
+                selectionManager.inTrial = false; //reset selection (color)
+                resetTrial();
+            
+                DisplayInstructions("", 100);
+                response = selectionManager.objectHit; //get the selected object
+                _rt = Time.realtimeSinceStartup - _startTrial; // reaction time
+                SaveTrialResponses(); // save the current response
+            }
         }
 
     }
@@ -394,8 +397,8 @@ public class TaskManager : MonoBehaviour
         // The following could be written in one line but this makes it easier to see
         // add all the parameters as string to the list
 
-        string currData = (nrBlocks.ToString() + "," + _nrTrials.ToString() + "," + emotions[currCond] + "," + position[currPos] +
-            "," + neutral[neutralPerson] + "," + _rt.ToString() + "," + response);
+        string currData = (nrBlocks.ToString() + ";" + _nrTrials.ToString() + ";" + emotions[currCond] + ";" + position[currPos] +
+            ";" + neutral[neutralPerson] + ";" + _rt.ToString() + ";" + response);
 
         // add the new list to the list of lists that will become our output csv
         _data.Add(currData);
