@@ -254,8 +254,8 @@ public class TaskManager : MonoBehaviour
                 //place EmotionalExpression on left & Neutral on Right
                 if (currPos == 0)
                 {
-                    emotionExp = Instantiate(Resources.Load("Prefabs/Angry", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
-                    neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
+                    //emotionExp = Instantiate(Resources.Load("Prefabs/Angry", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
+                    //neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
                     angryExpLeft.SetActive(true);
                     emotionExp = angryExpLeft;
                     neutralPersonPosition();
@@ -266,8 +266,8 @@ public class TaskManager : MonoBehaviour
                 //place on EmotionalExpression on right & Neutral on left
                 else
                 {
-                    emotionExp = Instantiate(Resources.Load("Prefabs/Angry", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
-                    neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
+                    //emotionExp = Instantiate(Resources.Load("Prefabs/Angry", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
+                    //neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
                     angryExpRight.SetActive(true);
                     emotionExp = angryExpRight;
                     neutralPersonPosition();
@@ -280,8 +280,8 @@ public class TaskManager : MonoBehaviour
             case 1:
                 if (currPos == 0)
                 {
-                    emotionExp = Instantiate(Resources.Load("Prefabs/Afraid", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
-                    neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
+                    //emotionExp = Instantiate(Resources.Load("Prefabs/Afraid", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
+                    //neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
                     fearExpLeft.SetActive(true);
                     emotionExp = fearExpLeft;
                     neutralPersonPosition();
@@ -292,8 +292,8 @@ public class TaskManager : MonoBehaviour
                 //place on EmotionalExpression on right & Neutral on left
                 else
                 {
-                    emotionExp = Instantiate(Resources.Load("Prefabs/Afraid", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
-                    neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
+                    //emotionExp = Instantiate(Resources.Load("Prefabs/Afraid", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
+                    //neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
                     fearExpRight.SetActive(true);
                     emotionExp = fearExpRight;
                     neutralPersonPosition();
@@ -306,8 +306,8 @@ public class TaskManager : MonoBehaviour
             case 2:
                 if (currPos == 0)
                 {
-                    emotionExp = Instantiate(Resources.Load("Prefabs/Happy", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
-                    neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
+                    //emotionExp = Instantiate(Resources.Load("Prefabs/Happy", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
+                    //neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
                     happyExpLeft.SetActive(true);
                     emotionExp = happyExpLeft;
                     neutralPersonPosition();
@@ -318,8 +318,8 @@ public class TaskManager : MonoBehaviour
                 //place on EmotionalExpression on right & Neutral on left
                 else
                 {
-                    emotionExp = Instantiate(Resources.Load("Prefabs/Happy", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
-                    neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
+                    //emotionExp = Instantiate(Resources.Load("Prefabs/Happy", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
+                    //neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
                     happyExpRight.SetActive(true);
                     emotionExp = happyExpRight;
                     neutralPersonPosition();
@@ -332,8 +332,8 @@ public class TaskManager : MonoBehaviour
             case 3:
                 if (currPos == 0)
                 {
-                    emotionExp = Instantiate(Resources.Load("Prefabs/Sad", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
-                    neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
+                    //emotionExp = Instantiate(Resources.Load("Prefabs/Sad", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
+                    //neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
                     sadExpLeft.SetActive(true);
                     emotionExp = sadExpLeft;
                     neutralPersonPosition();
@@ -344,8 +344,8 @@ public class TaskManager : MonoBehaviour
                 //place on EmotionalExpression on right & Neutral on left
                 else
                 {
-                    emotionExp = Instantiate(Resources.Load("Prefabs/Sad", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
-                    neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
+                    //emotionExp = Instantiate(Resources.Load("Prefabs/Sad", typeof(GameObject)), new Vector3(0.5f, 1, 0), Quaternion.identity) as GameObject;
+                    //neutralExp = Instantiate(Resources.Load("Prefabs/Neutral", typeof(GameObject)), new Vector3(-1, 1, 0), Quaternion.identity) as GameObject;
                     sadExpRight.SetActive(true);
                     emotionExp = sadExpRight;
                     neutralPersonPosition();
