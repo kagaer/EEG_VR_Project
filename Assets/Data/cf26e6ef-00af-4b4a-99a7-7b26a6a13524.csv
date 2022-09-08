@@ -1,0 +1,13 @@
+BlockNumber, TaskNumber, EmotionalExpression, PositionExpression, ReactionTime, ResponsePosition
+3,3,happy,right,old,1,846504,
+3,2,angry,left,old,0,7224293,
+3,1,angry,right,old,1,355289,
+3,0,afraid,left,young,1,461197,
+2,3,sad,left,young,0,6139412,
+2,2,angry,right,old,0,4188614,
+2,1,afraid,left,young,1,947441,
+2,0,angry,right,old,1,125031,
+1,3,happy,right,old,1,050591,
+1,2,afraid,left,old,1,981857,
+1,1,angry,right,old,0,3578796,
+1,0,angry,right,old,0,6656723,
