@@ -6,7 +6,7 @@ public class SelectionManager : MonoBehaviour
 {
     [SerializeField] private string selectableTag = "Selectable";
     [SerializeField] private Material highlightMaterial;
-    [SerializeField] private Material selectedMaterial; 
+    [SerializeField] private Material selectedMaterial;
     [SerializeField] private Material defaultMaterial;
 
     [SerializeField] GameObject leftChair;
@@ -20,22 +20,22 @@ public class SelectionManager : MonoBehaviour
     public float startTrialTime;
 
     private Transform _selection;
-    private Transform lastSelected; 
+    private Transform lastSelected;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         if (hasStarted)
-        {            
+        {
             if (inTrial)
             {
                 objectHit = "";
-                
+
                 if (_selection != null)
                 {
                     var selectionRenderer = _selection.GetComponent<Renderer>();
@@ -65,10 +65,10 @@ public class SelectionManager : MonoBehaviour
                                 {
                                     objectHit = "right";
                                 }
-                           
+
                                 objectSelected = true;
-                                inTrial = false; 
-                                
+                                inTrial = false;
+
                             }
                             else
                             {
@@ -86,16 +86,16 @@ public class SelectionManager : MonoBehaviour
             else
             {
                 //objectHit = "";
-                if(lastSelected!= null)
+                if (lastSelected != null)
                 {
                     var selectionRenderer = lastSelected.GetComponent<Renderer>();
                     selectionRenderer.material = defaultMaterial;
                 }
-           
+
             }
 
         }
-        else if(lastSelected != null)
+        else if (lastSelected != null)
         {
             var selectionRenderer = lastSelected.GetComponent<Renderer>();
             selectionRenderer.material = defaultMaterial;

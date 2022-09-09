@@ -1,0 +1,25 @@
+BlockNumber, TaskNumber, EmotionalExpression, PositionExpression, NeutralAvatar, ReactionTime, ResponsePosition
+5,3,afraid,left,young,1.458616,right
+5,2,sad,right,young,2.66339,left
+5,1,angry,left,young,2.345955,right
+5,0,afraid,left,young,1.875425,right
+4,4,afraid,left,young,1.987808,right
+4,3,angry,left,young,1.621082,right
+4,2,happy,right,old,1.388397,right
+4,1,happy,right,old,1.38488,right
+4,0,sad,right,young,1.564945,left
+3,4,angry,left,young,1.183613,right
+3,3,afraid,left,young,1.367733,right
+3,2,angry,left,young,1.26535,right
+3,1,sad,right,young,1.426971,left
+3,0,afraid,left,young,1.330711,right
+2,4,happy,right,old,1.206017,right
+2,3,sad,right,young,1.739937,left
+2,2,sad,right,young,1.669731,left
+2,1,sad,right,young,1.65475,left
+2,0,angry,left,young,1.276176,right
+1,4,happy,right,old,1.607819,left
+1,3,angry,left,young,1.188881,right
+1,2,happy,right,old,2.878235,right
+1,1,afraid,left,young,1.785751,right
+1,0,happy,right,old,1.209625,right

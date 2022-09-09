@@ -128,7 +128,7 @@ public class TaskManager : MonoBehaviour
         {
             DisplayInstructions("Time for a pause. Press Space to continue.", 30); // display pause screen
             breakCurr = false; // pause isi
-            
+
             selectionManager.hasStarted = false;
             selectionManager.inTrial = false;
 
@@ -205,10 +205,10 @@ public class TaskManager : MonoBehaviour
                 _breakInterval = breakInterval; // reset isi time
                 breakCurr = true;
                 stimCurr = false;
-            
+
                 selectionManager.inTrial = false; //reset selection (color)
                 resetTrial();
-            
+
                 DisplayInstructions("", 100);
                 response = selectionManager.objectHit; //get the selected object
                 _rt = selectionManager.rt; // reaction time
@@ -434,19 +434,19 @@ public class TaskManager : MonoBehaviour
 
     private List<int> AddMultiple(List<int> list, int value, int n)
     {
-        for(int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
         {
             list.Add(value);
         }
 
-        return list; 
+        return list;
     }
 
     private List<int> CreateList(int numberConditions, int repetitions)
     {
         List<int> list = new List<int>();
 
-        for(int i = 0; i < numberConditions; i++)
+        for (int i = 0; i < numberConditions; i++)
         {
             list = AddMultiple(list, i, repetitions);
         }
