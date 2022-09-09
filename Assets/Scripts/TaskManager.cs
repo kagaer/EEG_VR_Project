@@ -35,6 +35,12 @@ public class TaskManager : MonoBehaviour
     GameObject neutralExp;
     GameObject emotionExp;
 
+    //List of all randomization trials
+    List<int> allRandomizedCond;
+    List<int> allRandomizedPos;
+    List<int> allRandomizedNeutralPerson;
+    int currentTrial = 0;
+
     [SerializeField] GameObject neutral1ExpLeft;
     [SerializeField] GameObject neutral2ExpLeft;
     [SerializeField] GameObject happyExpLeft;
@@ -82,6 +88,15 @@ public class TaskManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int numberCondRepetitions = (nrTrials * nrBlocks) / emotions.Count;
+        int numberPosRepetitions = (nrTrials * nrBlocks) / position.Count;
+        int numberNeutralPersonRepetitions = (nrTrials * nrBlocks) / neutral.Count;
+
+        allRandomizedCond = CreateList(emotions.Count, numberCondRepetitions);
+        allRandomizedPos = CreateList(position.Count, numberPosRepetitions);
+        allRandomizedNeutralPerson = CreateList(neutral.Count, numberNeutralPersonRepetitions);
+        //Debug.Log("List: " + allRandomizedCond.Count);
+
         // show introduction text
         string introText = text1 + "\n" + text2 + "\n" + "\n" + text3;
         DisplayInstructions(introText, 36);
@@ -238,13 +253,18 @@ public class TaskManager : MonoBehaviour
     void randomizeTrials()
     {
         //Randomize Condition
-        currCond = random.Next(emotions.Count);
+        currCond = allRandomizedCond[currentTrial];
+        //currCond = random.Next(emotions.Count);
 
         //Randomize Position
-        currPos = random.Next(position.Count);
+        currPos = allRandomizedPos[currentTrial];
+        //currPos = random.Next(position.Count);
 
         //Randomize Neutral Person
-        neutralPerson = random.Next(neutral.Count);
+        neutralPerson = allRandomizedNeutralPerson[currentTrial];
+        //neutralPerson = random.Next(neutral.Count);
+
+        currentTrial++;
 
     }
 
@@ -411,4 +431,41 @@ public class TaskManager : MonoBehaviour
         writeCSV.MakeCSV(_data, _header); // save Data
         Application.Quit(); // end application
     }
+
+    private List<int> AddMultiple(List<int> list, int value, int n)
+    {
+        for(int i = 0; i < n; i++)
+        {
+            list.Add(value);
+        }
+
+        return list; 
+    }
+
+    private List<int> CreateList(int numberConditions, int repetitions)
+    {
+        List<int> list = new List<int>();
+
+        for(int i = 0; i < numberConditions; i++)
+        {
+            list = AddMultiple(list, i, repetitions);
+        }
+        list = Shuffle<int>(list);
+        return list;
+    }
+
+    public static List<T> Shuffle<T>(List<T> list)
+    {
+        //Random rnd = new Random();
+        System.Random rnd = new System.Random();
+        for (int i = 0; i < list.Count; i++)
+        {
+            int k = rnd.Next(0, i);
+            T value = list[k];
+            list[k] = list[i];
+            list[i] = value;
+        }
+        return list;
+    }
+
 }
