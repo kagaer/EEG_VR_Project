@@ -15,7 +15,9 @@ public class SelectionManager : MonoBehaviour
     public bool hasStarted = false;
     public bool inTrial = false;
     public bool objectSelected = false;
-    public string objectHit = ""; 
+    public string objectHit = "";
+    public float rt;
+    public float startTrialTime;
 
     private Transform _selection;
     private Transform lastSelected; 
@@ -29,7 +31,7 @@ public class SelectionManager : MonoBehaviour
     void Update()
     {
         if (hasStarted)
-        {
+        {            
             if (inTrial)
             {
                 objectHit = "";
@@ -53,6 +55,7 @@ public class SelectionManager : MonoBehaviour
                         {
                             if (Input.GetMouseButtonDown(0))
                             {
+                                rt = Time.realtimeSinceStartup - startTrialTime;
                                 selectionRenderer.material = selectedMaterial;
                                 if (hit.transform == leftChair.transform)
                                 {
