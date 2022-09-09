@@ -59,7 +59,7 @@ public class TaskManager : MonoBehaviour
     System.Random random = new System.Random();
 
     private List<string> _data = new List<string>();
-    private string _header = "BlockNumber; TaskNumber; EmotionalExpression; PositionExpression; Avatar; ReactionTime; ResponsePosition";
+    private string _header = "BlockNumber; TaskNumber; EmotionalExpression; PositionExpression; NeutralAvatar; ReactionTime; ResponsePosition";
 
     public string response;
     private int currCond;
@@ -67,7 +67,8 @@ public class TaskManager : MonoBehaviour
     private int neutralPerson;
 
     // reaction time
-    private float _startTrial;
+    //private float _startTrialTime;
+    private float _responseTime;
     private float _rt;
 
     // introduction text
@@ -147,7 +148,8 @@ public class TaskManager : MonoBehaviour
                 stimCurr = true;
                 _nrTrials -= 1; // count down nr. of trials
 
-                _startTrial = Time.realtimeSinceStartup;
+                //_startTrialTime = Time.realtimeSinceStartup;
+                selectionManager.startTrialTime = Time.realtimeSinceStartup;
                 writeCSV.cnt += 1;
 
                 //restart the trials
@@ -194,7 +196,7 @@ public class TaskManager : MonoBehaviour
             
                 DisplayInstructions("", 100);
                 response = selectionManager.objectHit; //get the selected object
-                _rt = Time.realtimeSinceStartup - _startTrial; // reaction time
+                _rt = selectionManager.rt; // reaction time
                 SaveTrialResponses(); // save the current response
             }
         }
