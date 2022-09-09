@@ -86,14 +86,21 @@ public class SelectionManager : MonoBehaviour
             else
             {
                 //objectHit = "";
-           
+                if(lastSelected!= null)
+                {
                     var selectionRenderer = lastSelected.GetComponent<Renderer>();
                     selectionRenderer.material = defaultMaterial;
+                }
            
             }
 
         }
-
+        else if(lastSelected != null)
+        {
+            var selectionRenderer = lastSelected.GetComponent<Renderer>();
+            selectionRenderer.material = defaultMaterial;
+            lastSelected = null;
+        }
 
     }
 }
