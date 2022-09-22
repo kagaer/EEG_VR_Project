@@ -8,15 +8,16 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material selectedMaterial; 
     [SerializeField] private Material defaultMaterial;
-    //[SerializeField] private TaskManager taskManager;
+
     [SerializeField] GameObject leftChair;
     [SerializeField] GameObject rightChair;
 
     public bool hasStarted = false;
-    public bool inTrial = true;
+    public bool inTrial = false;
     public bool objectSelected = false;
-    //public
-    public string objectHit = ""; 
+    public string objectHit = "";
+    public float rt;
+    public float startTrialTime;
 
     private Transform _selection;
     private Transform lastSelected; 
@@ -30,11 +31,11 @@ public class SelectionManager : MonoBehaviour
     void Update()
     {
         if (hasStarted)
-        {
+        {            
             if (inTrial)
             {
                 objectHit = "";
-
+                
                 if (_selection != null)
                 {
                     var selectionRenderer = _selection.GetComponent<Renderer>();
@@ -54,18 +55,17 @@ public class SelectionManager : MonoBehaviour
                         {
                             if (Input.GetMouseButtonDown(0))
                             {
+                                rt = Time.realtimeSinceStartup - startTrialTime;
                                 selectionRenderer.material = selectedMaterial;
                                 if (hit.transform == leftChair.transform)
                                 {
                                     objectHit = "left";
-                                    //Debug.Log(response);
                                 }
                                 else if (hit.transform == rightChair.transform)
                                 {
                                     objectHit = "right";
-                                    //Debug.Log(response);
                                 }
-
+                           
                                 objectSelected = true;
                                 inTrial = false; 
                                 
@@ -86,20 +86,21 @@ public class SelectionManager : MonoBehaviour
             else
             {
                 //objectHit = "";
-                var selectionRenderer = lastSelected.GetComponent<Renderer>();
-                selectionRenderer.material = defaultMaterial;
-                //if (_selection != null)
-                //{
-                //    var selectionRenderer = _selection.GetComponent<Renderer>();
-                //    selectionRenderer.material = defaultMaterial;
-                //    _selection = null;
-                //}
-                //_selection = selection;
-                //_selection
+                if(lastSelected!= null)
+                {
+                    var selectionRenderer = lastSelected.GetComponent<Renderer>();
+                    selectionRenderer.material = defaultMaterial;
+                }
+           
             }
 
         }
-
+        else if(lastSelected != null)
+        {
+            var selectionRenderer = lastSelected.GetComponent<Renderer>();
+            selectionRenderer.material = defaultMaterial;
+            lastSelected = null;
+        }
 
     }
 }
